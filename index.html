@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Filterable, Sortable & Paginated Table</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <div class="banner">
+  <h1>Employee Records</h1>
+  <img src="banner_image.png" alt="Banner Image" class="banner-img">
+</div>
+
+
+  <!-- Clear Filters Button -->
+  <div style="text-align: left; margin-bottom: 10px;">
+    <button id="clearFilters">Clear Filters</button>
+  </div>
+
+  <!-- Table container for horizontal scroll on small screens -->
+  <div class="table-container">
+    <table id="dataTable">
+      <thead>
+        <!-- Header row for sorting -->
+        <tr class="header">
+          <th class="sortable">Name</th>
+          <th class="sortable">Department</th>
+          <th class="sortable">Status</th>
+          <th class="sortable">Email</th>
+          <th class="sortable">Phone</th>
+          <th class="sortable">Role</th>
+          <th class="sortable">Date Joined</th>
+        </tr>
+        <!-- Filter row -->
+        <tr class="filters">
+          <th><input type="text" placeholder="Search Name"></th>
+          <th><input type="text" placeholder="Search Dept"></th>
+          <th>
+            <select>
+              <option value="">All</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </th>
+          <th><input type="text" placeholder="Search Email"></th>
+          <th><input type="text" placeholder="Search Phone"></th>
+          <th><input type="text" placeholder="Search Role"></th>
+          <th><input type="text" placeholder="YYYY-MM-DD"></th>
+        </tr>
+      </thead>
+        <tbody>
+            <tr>
+                <td data-label="Name">John Doe</td>
+                <td data-label="Department">IT</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">john.doe@example.com</td>
+                <td data-label="Phone">1234567890</td>
+                <td data-label="Role">Developer</td>
+                <td data-label="Date Joined">2023-01-15</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Jane Smith</td>
+                <td data-label="Department">HR</td>
+                <td data-label="Status">Inactive</td>
+                <td data-label="Email">jane.smith@example.com</td>
+                <td data-label="Phone">9876543210</td>
+                <td data-label="Role">Manager</td>
+                <td data-label="Date Joined">2022-09-05</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Mike Johnson</td>
+                <td data-label="Department">Finance</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">mike.j@example.com</td>
+                <td data-label="Phone">5551234567</td>
+                <td data-label="Role">Analyst</td>
+                <td data-label="Date Joined">2021-11-20</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Alice Brown</td>
+                <td data-label="Department">IT</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">alice.b@example.com</td>
+                <td data-label="Phone">4449876543</td>
+                <td data-label="Role">Tester</td>
+                <td data-label="Date Joined">2023-03-02</td>
+            </tr>
+            <tr>
+                <td data-label="Name">David Wilson</td>
+                <td data-label="Department">Marketing</td>
+                <td data-label="Status">Inactive</td>
+                <td data-label="Email">david.w@example.com</td>
+                <td data-label="Phone">3332221111</td>
+                <td data-label="Role">Designer</td>
+                <td data-label="Date Joined">2020-07-12</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Emma White</td>
+                <td data-label="Department">HR</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">emma.white@example.com</td>
+                <td data-label="Phone">2223334444</td>
+                <td data-label="Role">Recruiter</td>
+                <td data-label="Date Joined">2021-02-14</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Liam Green</td>
+                <td data-label="Department">IT</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">liam.green@example.com</td>
+                <td data-label="Phone">1112223333</td>
+                <td data-label="Role">Developer</td>
+                <td data-label="Date Joined">2022-05-10</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Olivia Black</td>
+                <td data-label="Department">Finance</td>
+                <td data-label="Status">Inactive</td>
+                <td data-label="Email">olivia.black@example.com</td>
+                <td data-label="Phone">6667778888</td>
+                <td data-label="Role">Accountant</td>
+                <td data-label="Date Joined">2019-08-22</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Noah Brown</td>
+                <td data-label="Department">Marketing</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">noah.brown@example.com</td>
+                <td data-label="Phone">9998887777</td>
+                <td data-label="Role">Content Writer</td>
+                <td data-label="Date Joined">2023-01-30</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Sophia Gray</td>
+                <td data-label="Department">IT</td>
+                <td data-label="Status">Inactive</td>
+                <td data-label="Email">sophia.gray@example.com</td>
+                <td data-label="Phone">4445556666</td>
+                <td data-label="Role">Tester</td>
+                <td data-label="Date Joined">2020-12-18</td>
+            </tr>
+            <tr>
+                <td data-label="Name">James King</td>
+                <td data-label="Department">HR</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">james.king@example.com</td>
+                <td data-label="Phone">7778889999</td>
+                <td data-label="Role">Manager</td>
+                <td data-label="Date Joined">2021-07-07</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Mia Scott</td>
+                <td data-label="Department">Finance</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">mia.scott@example.com</td>
+                <td data-label="Phone">5556667777</td>
+                <td data-label="Role">Analyst</td>
+                <td data-label="Date Joined">2022-03-12</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Ethan Lee</td>
+                <td data-label="Department">IT</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">ethan.lee@example.com</td>
+                <td data-label="Phone">2221113333</td>
+                <td data-label="Role">Developer</td>
+                <td data-label="Date Joined">2023-04-05</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Isabella Turner</td>
+                <td data-label="Department">Marketing</td>
+                <td data-label="Status">Inactive</td>
+                <td data-label="Email">isabella.turner@example.com</td>
+                <td data-label="Phone">1113335555</td>
+                <td data-label="Role">Designer</td>
+                <td data-label="Date Joined">2020-10-21</td>
+            </tr>
+            <tr>
+                <td data-label="Name">Alexander Hall</td>
+                <td data-label="Department">Finance</td>
+                <td data-label="Status">Active</td>
+                <td data-label="Email">alex.hall@example.com</td>
+                <td data-label="Phone">9991112222</td>
+                <td data-label="Role">Accountant</td>
+                <td data-label="Date Joined">2021-09-15</td>
+            </tr>
+        </tbody>
+
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div id="pagination">
+    <button id="prevPage">Previous</button>
+    <span id="pageInfo">Page 1</span>
+    <button id="nextPage">Next</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
