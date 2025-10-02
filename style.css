@@ -29,7 +29,7 @@ table {
 
 thead {
   background-color: #183547;
-  color: #fff;
+  color: #f5f2f2;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -194,10 +194,43 @@ tbody tr:hover {
 }
 
 .banner-img {
-  height: 100px;      
-  max-height: 100%;   
+  height: 100px;
+  max-height: 100%;
   width: auto;
-  border-radius: 8px; 
-  object-fit: contain; 
+  border-radius: 8px;
+  object-fit: contain;
 }
 
+/* Center align ONLY headers */
+#dataTable th {
+  text-align: center;
+  border-right: 1px solid #ddd;
+  padding: 12px;
+}
+
+/* Table data stays left-aligned */
+#dataTable td {
+  text-align: left;
+  border-right: 1px solid #ddd;
+  padding: 12px;
+}
+
+/* Remove border for last column */
+#dataTable th:last-child,
+#dataTable td:last-child {
+  border-right: none;
+}
+
+/* Filters Row (Search Boxes) */
+.filters input,
+.filters select {
+  width: 85%;
+  padding: 10px;
+  margin: 0 auto;
+  display: block;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
